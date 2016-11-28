@@ -20,6 +20,18 @@ def game_over():
     print("\n"*2) 
     print('GAME OVER!!')
     print('YOU DEAD')
+
+def bossatk(n):
+    global boss1
+
+    print("You attack")
+    boss1 = boss1 - n
+    print("Boss health remaining:", boss1)
+    if boss1 <= 0:
+        print("You kill it and run for the door")
+        escape()
+    else:
+        boss1_fight
     
         
 
@@ -285,7 +297,7 @@ def boss1_fight():
     status()
     dodge = randint(1, 2)
     yatk = randint(5, Cp)
-    batk = randint(10, 15)
+    batk = randint(5, 10)
 
     print("What do you do")
     print("A. dodge")
@@ -304,14 +316,20 @@ def boss1_fight():
 
     elif answer.upper() == 'B':
                    
-                   print("You attack")
-                   boss1 = boss1 - yatk
-                   print("Boss health remaining:", boss1)
-                   if boss1 <= 0:
-                       print("You kill it and run for the door")
-                       escape()
-                   else:
-                          boss1_fight
+                   bossatk(yatk)
+                   boss_attack()
+
+def boss_attack():
+    global Hp
+
+    batk = randint(5, 10)
+
+    print("it attacks")
+    print("You lose:", yatk)
+    health_loss(yatk)
+    boss1_fight() 
+    
+    
 
 
 
